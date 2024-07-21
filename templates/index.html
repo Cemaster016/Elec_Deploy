@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Electricity Demand Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .form-group {
+            width: 48%;
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Electricity Demand Prediction</h1>
+        <form method="POST" action="/predict">
+            <div class="form-group">
+                <label for="el_access_urban">Electricity Access Urban:</label>
+                <input type="number" id="el_access_urban" name="el_access_urban" required>
+            </div>
+            <div class="form-group">
+                <label for="el_demand">Electricity Demand:</label>
+                <input type="number" id="el_demand" name="el_demand" required>
+            </div>
+            <div class="form-group">
+                <label for="el_access_rural">Electricity Access Rural:</label>
+                <input type="number" id="el_access_rural" name="el_access_rural" required>
+            </div>
+            <div class="form-group">
+                <label for="population">Population:</label>
+                <input type="number" id="population" name="population" required>
+            </div>
+            <div class="form-group">
+                <label for="net_imports">Net Imports:</label>
+                <input type="number" id="net_imports" name="net_imports" required>
+            </div>
+            <div class="form-group">
+                <label for="el_demand_pc">Electricity Demand per Capita:</label>
+                <input type="number" id="el_demand_pc" name="el_demand_pc" required>
+            </div>
+            <div class="form-group">
+                <label for="fin_support">Financial Support:</label>
+                <input type="number" id="fin_support" name="fin_support" required>
+            </div>
+            <div class="form-group">
+                <label for="el_from_gas">Electricity from Gas:</label>
+                <input type="number" id="el_from_gas" name="el_from_gas" required>
+            </div>
+            <div class="form-group">
+                <label for="pop_no_el_access_total">Population with No Electricity Access Total:</label>
+                <input type="number" id="pop_no_el_access_total" name="pop_no_el_access_total" required>
+            </div>
+            <div class="form-group">
+                <label for="urban_share">Urban Share:</label>
+                <input type="number" id="urban_share" name="urban_share" required>
+            </div>
+            <div class="form-group">
+                <label for="income_group_num">Income Group Number:</label>
+                <input type="number" id="income_group_num" name="income_group_num" required>
+            </div>
+            <div class="form-group">
+                <label for="year">Year:</label>
+                <input type="number" id="year" name="year" required>
+            </div>
+            <div class="form-group">
+                <label for="el_access_total">Electricity Access Total:</label>
+                <input type="number" id="el_access_total" name="el_access_total" required>
+            </div>
+            <div class="form-group">
+                <label for="gdp_pc">GDP per Capita:</label>
+                <input type="number" id="gdp_pc" name="gdp_pc" required>
+            </div>
+            <button type="submit">Predict</button>
+        </form>
+        {% if prediction %}
+            <div class="result">
+                <h2>Predicted Electricity Gap: {{ prediction }}</h2>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
+
+
