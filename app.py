@@ -34,11 +34,10 @@ def predict():
         'income_group_num': float(data['income_group_num']),
         'year': float(data['year']),
         'el_access_total': float(data['el_access_total']),
-        'gdp_pc': float(data['gdp_pc'])
+        'gdp_pc': float(data['gdp_pc']),
+        't_demand': float(data['t_demand']),
+        'supply_rate': float(data['el_demand']) / float(data['el_access_total'])  # Calculated feature
     }
-    
-    # Calculate supply_rate
-    features['supply_rate'] = features['el_demand'] / features['el_access_total']
     
     # Prepare features for prediction
     feature_values = [
@@ -56,8 +55,13 @@ def predict():
         features['year'],
         features['el_access_total'],
         features['gdp_pc'],
+        features['t_demand'],
         features['supply_rate']
     ]
+    
+    # Ensure feature_values has the correct number of features
+    if len(feature_values) != 16:
+        return jsonify({'error': 'Incorrect number of features provided.'})
     
     # Scale the features
     feature_values = np.array(feature_values).reshape(1, -1)
@@ -75,5 +79,3 @@ def predict():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
-
-
