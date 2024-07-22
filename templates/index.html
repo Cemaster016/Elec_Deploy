@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Electricity Demand Prediction</title>
+    <title>Forecasting the electricity demand and supply gap for sub-Saharan African countries </title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,9 +19,32 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
         }
+        .intro {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .intro-image {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .intro-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
         h1 {
             text-align: center;
             margin-bottom: 20px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #666;
+        }
+        p {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #666;
         }
         form {
             display: flex;
@@ -30,6 +53,10 @@
         }
         .form-group {
             width: 48%;
+            margin-bottom: 15px;
+        }
+        .form-group-full {
+            width: 100%;
             margin-bottom: 15px;
         }
         label {
@@ -64,7 +91,14 @@
 </head>
 <body>
     <div class="container">
-        <h1>Electricity Demand Prediction</h1>
+        <div class="intro">
+            <div class="intro-image">
+                <img src="{{ url_for('static', filename='Ele_Pic.webp') }}" alt="Intro Image">
+            </div>
+            <h1>Electricity Gap Prediction</h1>
+            <p>Welcome to the Electricity Gap Prediction app. This project predicts electricity gaps in Sub-Saharan Africa, identifying where demand exceeds supply and aiding in planning for improved energy access using socio-economic and energy data.</p>
+        </div>
+        <h2>Enter the details below to predict the electricity gap:</h2>
         <form method="POST" action="/predict">
             <div class="form-group">
                 <label for="el_access_urban">Electricity Access Urban:</label>
@@ -132,7 +166,3 @@
     </div>
 </body>
 </html>
-
-
-
-
